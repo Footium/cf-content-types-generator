@@ -18,6 +18,9 @@
     "commands": "./lib/commands"
   },
   "repository": "https://github.com/nickmartink/cf-content-types-generator",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "/bin",
     "/lib"
