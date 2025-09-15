@@ -61,19 +61,14 @@ describe('The default content type renderer', () => {
 
     expect('\n' + testFile.getFullText()).toEqual(
       stripIndent(`
-        import type { Entry } from "contentful";
-        import type { TypeLinkedTypeSkeleton } from "./TypeLinkedType";
+        import type { EntrySkeletonType } from "contentful";
+        import type { TypeLinkedTypeFields } from "./TypeLinkedType";
         
         export interface TypeTestFields {
-            linkFieldId: Entry<TypeLinkedTypeSkeleton>;
+            linkFieldId: EntrySkeletonType<TypeLinkedTypeFields>;
         }
         
-        export interface TypeTestSkeleton {
-            fields: TypeTestFields;
-            contentTypeId: string;
-        }
-        
-        export type TypeTest = Entry<TypeTestSkeleton>;
+        export type TypeTest = EntrySkeletonType<TypeTestFields>;
         `),
     );
   });
@@ -144,18 +139,13 @@ describe('A derived content type renderer class', () => {
 
     expect('\n' + testFile.getFullText()).toEqual(
       stripIndent(`
-        import type { Entry } from "contentful";
+        import type { EntrySkeletonType } from "contentful";
         
         export interface TypeTestFields {
             field_id: Test.Symbol;
         }
         
-        export interface TypeTestSkeleton {
-            fields: TypeTestFields;
-            contentTypeId: string;
-        }
-        
-        export type TypeTest = Entry<TypeTestSkeleton>;
+        export type TypeTest = EntrySkeletonType<TypeTestFields>;
         `),
     );
   });
@@ -211,20 +201,15 @@ describe('A derived content type renderer class', () => {
 
     expect('\n' + testFile.getFullText()).toEqual(
       stripIndent(`
-        import type { Entry, EntryFields } from "contentful";
+        import type { EntryFields, EntrySkeletonType } from "contentful";
         
         export interface TypeTestFields {
             /** Field of type "Symbol" */
             field_id: EntryFields.Symbol;
         }
         
-        export interface TypeTestSkeleton {
-            fields: TypeTestFields;
-            contentTypeId: string;
-        }
-        
         /** content type "display name" with id: test */
-        export type TypeTest = Entry<TypeTestSkeleton>;
+        export type TypeTest = EntrySkeletonType<TypeTestFields>;
         `),
     );
   });
@@ -239,7 +224,7 @@ describe('A derived content type renderer class', () => {
         });
         return renderTypeGeneric(
           'IdScopedEntry',
-          `'${contentType.sys.id}', ${context.moduleSkeletonName(contentType.sys.id)}`,
+          `'${contentType.sys.id}', ${context.moduleFieldsName(contentType.sys.id)}`,
         );
       }
     }
@@ -277,12 +262,7 @@ describe('A derived content type renderer class', () => {
             field_id: EntryFields.Symbol;
         }
         
-        export interface TypeTestSkeleton {
-            fields: TypeTestFields;
-            contentTypeId: string;
-        }
-        
-        export type TypeTest = IdScopedEntry<'test', TypeTestSkeleton>;
+        export type TypeTest = IdScopedEntry<'test', TypeTestFields>;
         `),
     );
   });

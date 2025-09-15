@@ -1,4 +1,4 @@
-import type { Asset, Entry, EntryFields } from "contentful";
+import type { Asset, EntryFields, EntrySkeletonType } from "contentful";
 
 export interface TypeBrandFields {
     companyName: EntryFields.Text;
@@ -10,12 +10,7 @@ export interface TypeBrandFields {
     phone?: EntryFields.Symbol[];
 }
 
-export interface TypeBrandSkeleton {
-    fields: TypeBrandFields;
-    contentTypeId: string;
-}
-
-export type TypeBrand = Entry<TypeBrandSkeleton>;
+export type TypeBrand = EntrySkeletonType<TypeBrandFields>;
 
 export interface TypeCategoryFields {
     title: EntryFields.Text;
@@ -23,12 +18,7 @@ export interface TypeCategoryFields {
     categoryDescription?: EntryFields.Text;
 }
 
-export interface TypeCategorySkeleton {
-    fields: TypeCategoryFields;
-    contentTypeId: string;
-}
-
-export type TypeCategory = Entry<TypeCategorySkeleton>;
+export type TypeCategory = EntrySkeletonType<TypeCategoryFields>;
 
 export interface TypeProductFields {
     productName: EntryFields.Text;
@@ -37,17 +27,12 @@ export interface TypeProductFields {
     sizetypecolor?: EntryFields.Symbol;
     image?: Asset[];
     tags?: EntryFields.Symbol[];
-    categories?: Entry<TypeCategorySkeleton>[];
+    categories?: EntrySkeletonType<TypeCategoryFields>[];
     price?: EntryFields.Number;
-    brand?: Entry<TypeBrandSkeleton>;
+    brand?: EntrySkeletonType<TypeBrandFields>;
     quantity?: EntryFields.Integer;
     sku?: EntryFields.Symbol;
     website?: EntryFields.Symbol;
 }
 
-export interface TypeProductSkeleton {
-    fields: TypeProductFields;
-    contentTypeId: string;
-}
-
-export type TypeProduct = Entry<TypeProductSkeleton>;
+export type TypeProduct = EntrySkeletonType<TypeProductFields>;

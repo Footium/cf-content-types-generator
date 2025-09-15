@@ -18,7 +18,6 @@ export class V11ContentTypeRenderer extends BaseContentTypeRenderer {
 
     this.addDefaultImports(context);
     this.renderFieldsInterface(contentType, file, context);
-    this.renderSkeletonInterface(contentType, file, context);
     file.addTypeAlias(this.renderEntry(contentType, context));
 
     for (const structure of context.imports) {
@@ -47,32 +46,6 @@ export class V11ContentTypeRenderer extends BaseContentTypeRenderer {
         context.imports.add(pImport);
       }
     }
-  }
-
-  protected renderSkeletonInterface(
-    contentType: CFContentType,
-    file: SourceFile,
-    context: RenderContext,
-  ): void {
-    const skeletonInterfaceName = context.moduleSkeletonName(contentType.sys.id);
-    const fieldsInterfaceName = context.moduleFieldsName(contentType.sys.id);
-
-    const interfaceDeclaration = file.addInterface({
-      name: skeletonInterfaceName,
-      isExported: true,
-    });
-
-    // Add the fields property
-    interfaceDeclaration.addProperty({
-      name: 'fields',
-      type: fieldsInterfaceName,
-    });
-
-    // Add the contentTypeId property
-    interfaceDeclaration.addProperty({
-      name: 'contentTypeId',
-      type: 'string',
-    });
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -107,10 +80,10 @@ export class V11ContentTypeRenderer extends BaseContentTypeRenderer {
   protected renderEntryType(contentType: CFContentType, context: RenderContext): string {
     context.imports.add({
       moduleSpecifier: 'contentful',
-      namedImports: ['Entry'],
+      namedImports: ['EntrySkeletonType'],
       isTypeOnly: true,
     });
-    return renderTypeGeneric('Entry', context.moduleSkeletonName(contentType.sys.id));
+    return renderTypeGeneric('EntrySkeletonType', context.moduleFieldsName(contentType.sys.id));
   }
 
   public createContext(): RenderContext {

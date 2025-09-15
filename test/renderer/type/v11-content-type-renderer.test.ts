@@ -56,19 +56,14 @@ describe('The v11 content type renderer', () => {
 
     expect('\n' + testFile.getFullText()).toEqual(
       stripIndent(`
-        import type { Entry } from "contentful";
-        import type { TypeLinkedTypeSkeleton } from "./TypeLinkedType";
+        import type { EntrySkeletonType } from "contentful";
+        import type { TypeLinkedTypeFields } from "./TypeLinkedType";
         
         export interface TypeTestFields {
-            linkFieldId: Entry<TypeLinkedTypeSkeleton>;
+            linkFieldId: EntrySkeletonType<TypeLinkedTypeFields>;
         }
         
-        export interface TypeTestSkeleton {
-            fields: TypeTestFields;
-            contentTypeId: string;
-        }
-        
-        export type TypeTest = Entry<TypeTestSkeleton>;
+        export type TypeTest = EntrySkeletonType<TypeTestFields>;
         `),
     );
   });
@@ -110,18 +105,13 @@ describe('The v11 content type renderer', () => {
 
     expect('\n' + testFile.getFullText()).toEqual(
       stripIndent(`
-        import type { Entry } from "contentful";
+        import type { EntrySkeletonType } from "contentful";
         
         export interface TypeTestFields {
             field_id: Test.Symbol;
         }
         
-        export interface TypeTestSkeleton {
-            fields: TypeTestFields;
-            contentTypeId: string;
-        }
-        
-        export type TypeTest = Entry<TypeTestSkeleton>;
+        export type TypeTest = EntrySkeletonType<TypeTestFields>;
         `),
     );
   });
@@ -170,18 +160,13 @@ describe('The v11 content type renderer', () => {
 
     expect('\n' + testFile.getFullText()).toEqual(
       stripIndent(`
-        import type { Entry, EntryFields } from "contentful";
+        import type { EntryFields, EntrySkeletonType } from "contentful";
         
         export interface TypeTestFields {
             field_id: EntryFields.Symbol;
         }
         
-        export interface TypeTestSkeleton {
-            fields: TypeTestFields;
-            contentTypeId: string;
-        }
-        
-        export type TypeTest = Entry<TypeTestSkeleton>;
+        export type TypeTest = EntrySkeletonType<TypeTestFields>;
         `),
     );
   });
@@ -198,7 +183,7 @@ describe('The v11 content type renderer', () => {
         return renderTypeGeneric(
           'IdScopedEntry',
           `'${contentType.sys.id}'`,
-          context.moduleSkeletonName(contentType.sys.id),
+          context.moduleFieldsName(contentType.sys.id),
         );
       }
     }
@@ -236,12 +221,7 @@ describe('The v11 content type renderer', () => {
             field_id: EntryFields.Symbol;
         }
         
-        export interface TypeTestSkeleton {
-            fields: TypeTestFields;
-            contentTypeId: string;
-        }
-        
-        export type TypeTest = IdScopedEntry<'test', TypeTestSkeleton>;
+        export type TypeTest = IdScopedEntry<'test', TypeTestFields>;
         `),
     );
   });

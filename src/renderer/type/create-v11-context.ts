@@ -8,7 +8,7 @@ export const createV11Context = (): RenderContext => {
     moduleName,
     moduleFieldsName,
     moduleSkeletonName,
-    moduleReferenceName: moduleSkeletonName,
+    moduleReferenceName: moduleFieldsName,
     getFieldRenderer: <FType extends ContentTypeFieldType>(fieldType: FType) =>
       defaultRenderers[fieldType] as FieldRenderer<FType>,
     imports: new Set(),
