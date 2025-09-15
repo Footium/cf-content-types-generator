@@ -25,7 +25,7 @@ describe('A renderPropArray function', () => {
       }
       `);
 
-    expect(renderPropArray(field, createDefaultContext())).toEqual('Entry<Record<string, any>>[]');
+    expect(renderPropArray(field, createDefaultContext())).toEqual('EntrySkeletonType<Record<string, any>>[]');
   });
 
   it('can evaluate an "Array" of "Symbol"', () => {
@@ -114,7 +114,7 @@ describe('A renderPropArray function', () => {
         `);
 
     expect(renderPropArray(field, createDefaultContext())).toEqual(
-      'Entry<TypeComponentCtaFields | TypeComponentFaqFields | TypeWrapperImageFields | TypeWrapperVideoFields>[]',
+      'EntrySkeletonType<TypeComponentCtaFields | TypeComponentFaqFields | TypeWrapperImageFields | TypeWrapperVideoFields>[]',
     );
   });
 
@@ -148,7 +148,7 @@ describe('A renderPropArray function', () => {
       }
     `);
 
-    expect(renderPropArray(field, createDefaultContext())).toEqual('Entry<Record<string, any>>[]');
+    expect(renderPropArray(field, createDefaultContext())).toEqual('EntrySkeletonType<Record<string, any>>[]');
   });
 });
 

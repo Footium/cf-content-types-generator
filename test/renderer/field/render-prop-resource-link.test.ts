@@ -29,7 +29,7 @@ describe('A renderPropResourceLink function', () => {
         `);
 
     expect(renderPropResourceLink(field, createDefaultContext())).toEqual(
-      'Entry<Record<string, any>>',
+      'EntrySkeletonType<Record<string, any>>',
     );
   });
 

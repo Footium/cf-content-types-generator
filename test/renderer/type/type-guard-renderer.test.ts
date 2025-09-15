@@ -50,14 +50,14 @@ describe('A content type type guard renderer class', () => {
 
       expect('\n' + testFile.getFullText()).toEqual(
         stripIndent(`
-        import type { Entry, EntryFields } from "contentful";
+        import type { EntryFields, EntrySkeletonType } from "contentful";
         import type { WithContentTypeLink } from "./WithContentTypeLink";
         
         export interface TypeAnimalFields {
             bread: EntryFields.Symbol;
         }
         
-        export type TypeAnimal = Entry<TypeAnimalFields>;
+        export type TypeAnimal = EntrySkeletonType<TypeAnimalFields>;
         
         export function isTypeAnimal(entry: WithContentTypeLink): entry is TypeAnimal {
             return entry?.sys?.contentType?.sys?.id === 'animal'

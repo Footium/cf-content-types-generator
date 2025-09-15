@@ -13,7 +13,7 @@ export const renderPropLink = (
   ): string => {
     const validations = linkContentTypeValidations(field);
     return validations?.length > 0
-      ? renderTypeUnion(validations.map((validation) => context.moduleFieldsName(validation)))
+      ? renderTypeUnion(validations.map((validation) => context.moduleReferenceName(validation)))
       : 'Record<string, any>';
   };
 
@@ -21,10 +21,10 @@ export const renderPropLink = (
     case 'Entry':
       context.imports.add({
         moduleSpecifier: 'contentful',
-        namedImports: ['Entry'],
+        namedImports: ['EntrySkeletonType'],
         isTypeOnly: true,
       });
-      return renderTypeGeneric(field.linkType, linkContentType(field, context));
+      return renderTypeGeneric('EntrySkeletonType', linkContentType(field, context));
 
     case 'Asset':
       context.imports.add({

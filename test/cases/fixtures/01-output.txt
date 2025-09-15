@@ -1,4 +1,4 @@
-import type { Asset, Entry, EntryFields } from "contentful";
+import type { Asset, EntryFields, EntrySkeletonType } from "contentful";
 
 export interface TypeBrandFields {
     companyName: EntryFields.Text;
@@ -10,7 +10,7 @@ export interface TypeBrandFields {
     phone?: EntryFields.Symbol[];
 }
 
-export type TypeBrand = Entry<TypeBrandFields>;
+export type TypeBrand = EntrySkeletonType<TypeBrandFields>;
 
 export interface TypeCategoryFields {
     title: EntryFields.Text;
@@ -18,7 +18,7 @@ export interface TypeCategoryFields {
     categoryDescription?: EntryFields.Text;
 }
 
-export type TypeCategory = Entry<TypeCategoryFields>;
+export type TypeCategory = EntrySkeletonType<TypeCategoryFields>;
 
 export interface TypeProductFields {
     productName: EntryFields.Text;
@@ -27,12 +27,12 @@ export interface TypeProductFields {
     sizetypecolor?: EntryFields.Symbol;
     image?: Asset[];
     tags?: EntryFields.Symbol[];
-    categories?: Entry<TypeCategoryFields>[];
+    categories?: EntrySkeletonType<TypeCategoryFields>[];
     price?: EntryFields.Number;
-    brand?: Entry<TypeBrandFields>;
+    brand?: EntrySkeletonType<TypeBrandFields>;
     quantity?: EntryFields.Integer;
     sku?: EntryFields.Symbol;
     website?: EntryFields.Symbol;
 }
 
-export type TypeProduct = Entry<TypeProductFields>;
+export type TypeProduct = EntrySkeletonType<TypeProductFields>;

@@ -1,15 +1,15 @@
 {
-  "name": "cf-content-types-generator",
+  "name": "@footium/cf-content-types-generator",
   "version": "0.0.0",
-  "description": "Contentful Content Types (TS Definitions) Generator",
-  "author": "Marco Link<marco.link@contentful.com>",
+  "description": "Contentful Content Types (TS Definitions) Generator for contentful v11",
+  "author": "Nick Martink<nick@footium.club>",
   "license": "MIT",
   "bin": {
     "cf-content-types-generator": "./bin/run"
   },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "bugs": "https://github.com/contentful-userland/cf-content-types-generator/issues",
+  "bugs": "https://github.com/Footium/cf-content-types-generator/issues",
   "engines": {
     "node": ">=20.0.0"
   },
@@ -17,7 +17,10 @@
     "default": ".",
     "commands": "./lib/commands"
   },
-  "repository": "contentful-userland/cf-content-types-generator",
+  "repository": "https://github.com/Footium/cf-content-types-generator",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "/bin",
     "/lib"
@@ -25,7 +28,7 @@
   "dependencies": {
     "@oclif/core": "^3.27.0",
     "@oclif/plugin-help": "^6.2.8",
-    "contentful": "^10.15.1",
+    "contentful": "^11.5.18",
     "contentful-export": "^7.19.147",
     "contentful-management": "^11.31.6",
     "fs-extra": "^11.2.0",
