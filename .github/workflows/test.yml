@@ -2,8 +2,8 @@ name: CI
 
 on:
   push:
+    branches: ['master', 'experimental']
   pull_request:
-  workflow_dispatch:
 jobs:
   build:
     name: Build
