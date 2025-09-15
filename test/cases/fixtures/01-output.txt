@@ -10,7 +10,12 @@ export interface TypeBrandFields {
     phone?: EntryFields.Symbol[];
 }
 
-export type TypeBrand = Entry<TypeBrandFields>;
+export interface TypeBrandSkeleton {
+    fields: TypeBrandFields;
+    contentTypeId: string;
+}
+
+export type TypeBrand = Entry<TypeBrandSkeleton>;
 
 export interface TypeCategoryFields {
     title: EntryFields.Text;
@@ -18,7 +23,12 @@ export interface TypeCategoryFields {
     categoryDescription?: EntryFields.Text;
 }
 
-export type TypeCategory = Entry<TypeCategoryFields>;
+export interface TypeCategorySkeleton {
+    fields: TypeCategoryFields;
+    contentTypeId: string;
+}
+
+export type TypeCategory = Entry<TypeCategorySkeleton>;
 
 export interface TypeProductFields {
     productName: EntryFields.Text;
@@ -27,12 +37,17 @@ export interface TypeProductFields {
     sizetypecolor?: EntryFields.Symbol;
     image?: Asset[];
     tags?: EntryFields.Symbol[];
-    categories?: Entry<TypeCategoryFields>[];
+    categories?: Entry<TypeCategorySkeleton>[];
     price?: EntryFields.Number;
-    brand?: Entry<TypeBrandFields>;
+    brand?: Entry<TypeBrandSkeleton>;
     quantity?: EntryFields.Integer;
     sku?: EntryFields.Symbol;
     website?: EntryFields.Symbol;
 }
 
-export type TypeProduct = Entry<TypeProductFields>;
+export interface TypeProductSkeleton {
+    fields: TypeProductFields;
+    contentTypeId: string;
+}
+
+export type TypeProduct = Entry<TypeProductSkeleton>;

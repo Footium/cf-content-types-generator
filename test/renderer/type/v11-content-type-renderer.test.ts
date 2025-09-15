@@ -1,20 +1,15 @@
-import { ContentTypeField, ContentTypeFieldType } from 'contentful';
+import { ContentTypeField } from 'contentful';
 
 import { Project, ScriptTarget, SourceFile } from 'ts-morph';
 import {
   CFContentType,
-  DefaultContentTypeRenderer,
-  defaultRenderers,
-  FieldRenderer,
-  moduleFieldsName,
-  moduleName,
-  moduleSkeletonName,
+  V11ContentTypeRenderer,
   RenderContext,
   renderTypeGeneric,
 } from '../../../src';
 import stripIndent = require('strip-indent');
 
-describe('The default content type renderer', () => {
+describe('The v11 content type renderer', () => {
   let project: Project;
   let testFile: SourceFile;
 
@@ -29,8 +24,8 @@ describe('The default content type renderer', () => {
     testFile = project.createSourceFile('test.ts');
   });
 
-  it('adds import for field type', () => {
-    const renderer = new DefaultContentTypeRenderer();
+  it('adds import for entry type', () => {
+    const renderer = new V11ContentTypeRenderer();
 
     const contentType: CFContentType = {
       name: 'unused-name',
@@ -77,43 +72,14 @@ describe('The default content type renderer', () => {
         `),
     );
   });
-});
-
-const symbolTypeRenderer = () => {
-  return 'Test.Symbol';
-};
-
-describe('A derived content type renderer class', () => {
-  let project: Project;
-  let testFile: SourceFile;
-
-  beforeEach(() => {
-    project = new Project({
-      useInMemoryFileSystem: true,
-      compilerOptions: {
-        target: ScriptTarget.ES5,
-        declaration: true,
-      },
-    });
-    testFile = project.createSourceFile('test.ts');
-  });
 
   it('can return a custom field type renderer', () => {
-    class DerivedContentTypeRenderer extends DefaultContentTypeRenderer {
-      public createContext(): RenderContext {
+    class DerivedContentTypeRenderer extends V11ContentTypeRenderer {
+      protected renderField(field: ContentTypeField, _context: RenderContext) {
         return {
-          moduleName,
-          moduleFieldsName,
-          moduleReferenceName: moduleFieldsName,
-          moduleSkeletonName,
-          getFieldRenderer: <FType extends ContentTypeFieldType>(fieldType: FType) => {
-            if (fieldType === 'Symbol') {
-              return symbolTypeRenderer as FieldRenderer<FType>;
-            }
-
-            return defaultRenderers[fieldType] as FieldRenderer<FType>;
-          },
-          imports: new Set(),
+          name: field.id,
+          hasQuestionToken: field.omitted || !field.required,
+          type: 'Test.Symbol',
         };
       }
     }
@@ -160,27 +126,20 @@ describe('A derived content type renderer class', () => {
     );
   });
 
-  it('can return a custom field renderer with docs support', () => {
-    class DerivedContentTypeRenderer extends DefaultContentTypeRenderer {
+  it('can return a custom field renderer with basic types', () => {
+    class DerivedContentTypeRenderer extends V11ContentTypeRenderer {
       protected renderField(field: ContentTypeField, context: RenderContext) {
+        // Add the EntryFields import manually since we're using a custom type
+        context.imports.add({
+          moduleSpecifier: 'contentful',
+          namedImports: ['EntryFields'],
+          isTypeOnly: true,
+        });
+
         return {
-          docs: [{ description: `Field of type "${field.type}"` }],
           name: field.id,
           hasQuestionToken: field.omitted || !field.required,
-          type: super.renderFieldType(field, context),
-        };
-      }
-
-      protected renderEntry(contentType: CFContentType, context: RenderContext) {
-        return {
-          docs: [
-            {
-              description: `content type "${contentType.name}" with id: ${contentType.sys.id}`,
-            },
-          ],
-          name: context.moduleName(contentType.sys.id),
-          isExported: true,
-          type: super.renderEntryType(contentType, context),
+          type: 'EntryFields.Symbol',
         };
       }
     }
@@ -214,7 +173,6 @@ describe('A derived content type renderer class', () => {
         import type { Entry, EntryFields } from "contentful";
         
         export interface TypeTestFields {
-            /** Field of type "Symbol" */
             field_id: EntryFields.Symbol;
         }
         
@@ -223,23 +181,24 @@ describe('A derived content type renderer class', () => {
             contentTypeId: string;
         }
         
-        /** content type "display name" with id: test */
         export type TypeTest = Entry<TypeTestSkeleton>;
         `),
     );
   });
 
   it('can render custom entries', () => {
-    class DerivedContentTypeRenderer extends DefaultContentTypeRenderer {
+    class DerivedContentTypeRenderer extends V11ContentTypeRenderer {
       protected renderEntryType(contentType: CFContentType, context: RenderContext): string {
         context.imports.add({
           moduleSpecifier: '@custom',
           namedImports: ['IdScopedEntry'],
           isTypeOnly: true,
         });
+
         return renderTypeGeneric(
           'IdScopedEntry',
-          `'${contentType.sys.id}', ${context.moduleSkeletonName(contentType.sys.id)}`,
+          `'${contentType.sys.id}'`,
+          context.moduleSkeletonName(contentType.sys.id),
         );
       }
     }
@@ -247,7 +206,7 @@ describe('A derived content type renderer class', () => {
     const renderer = new DerivedContentTypeRenderer();
 
     const contentType: CFContentType = {
-      name: 'display name',
+      name: 'unused-name',
       sys: {
         id: 'test',
         type: 'Symbol',

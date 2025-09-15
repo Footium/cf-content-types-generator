@@ -13,7 +13,7 @@ export const renderPropLink = (
   ): string => {
     const validations = linkContentTypeValidations(field);
     return validations?.length > 0
-      ? renderTypeUnion(validations.map((validation) => context.moduleFieldsName(validation)))
+      ? renderTypeUnion(validations.map((validation) => context.moduleReferenceName(validation)))
       : 'Record<string, any>';
   };
 

@@ -51,13 +51,18 @@ describe('A Contentful definitions builder', () => {
     builder.appendType(modelType);
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-                import type { Entry } from "contentful";
+import type { Entry } from "contentful";
 
-                export interface TypeSysIdFields {
-                }
+export interface TypeSysIdFields {
+}
 
-                export type TypeSysId = Entry<TypeSysIdFields>;
-                `),
+export interface TypeSysIdSkeleton {
+    fields: TypeSysIdFields;
+    contentTypeId: string;
+}
+
+export type TypeSysId = Entry<TypeSysIdSkeleton>;
+`),
     );
   });
 
@@ -79,14 +84,19 @@ describe('A Contentful definitions builder', () => {
     });
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-                import type { Entry, EntryFields } from "contentful";
-                
-                export interface TypeSysIdFields {
-                    symbolFieldId: EntryFields.Symbol;
-                }
+import type { Entry, EntryFields } from "contentful";
 
-                export type TypeSysId = Entry<TypeSysIdFields>;
-                `),
+export interface TypeSysIdFields {
+    symbolFieldId: EntryFields.Symbol;
+}
+
+export interface TypeSysIdSkeleton {
+    fields: TypeSysIdFields;
+    contentTypeId: string;
+}
+
+export type TypeSysId = Entry<TypeSysIdSkeleton>;
+`),
     );
   });
 
@@ -108,14 +118,19 @@ describe('A Contentful definitions builder', () => {
     });
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-                import type { Entry, EntryFields } from "contentful";
-                
-                export interface TypeSysIdFields {
-                    symbolFieldId?: EntryFields.Symbol;
-                }
+import type { Entry, EntryFields } from "contentful";
 
-                export type TypeSysId = Entry<TypeSysIdFields>;
-                `),
+export interface TypeSysIdFields {
+    symbolFieldId?: EntryFields.Symbol;
+}
+
+export interface TypeSysIdSkeleton {
+    fields: TypeSysIdFields;
+    contentTypeId: string;
+}
+
+export type TypeSysId = Entry<TypeSysIdSkeleton>;
+`),
     );
   });
 
@@ -137,14 +152,19 @@ describe('A Contentful definitions builder', () => {
     });
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-                import type { Entry, EntryFields } from "contentful";
-                
-                export interface TypeSysIdFields {
-                    boolFieldId?: EntryFields.Boolean;
-                }
+import type { Entry, EntryFields } from "contentful";
 
-                export type TypeSysId = Entry<TypeSysIdFields>;
-                `),
+export interface TypeSysIdFields {
+    boolFieldId?: EntryFields.Boolean;
+}
+
+export interface TypeSysIdSkeleton {
+    fields: TypeSysIdFields;
+    contentTypeId: string;
+}
+
+export type TypeSysId = Entry<TypeSysIdSkeleton>;
+`),
     );
   });
 
@@ -171,15 +191,20 @@ describe('A Contentful definitions builder', () => {
     });
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-                import type { Entry } from "contentful";
-                import type { TypeLinkedTypeFields } from "./TypeLinkedType";
+import type { Entry } from "contentful";
+import type { TypeLinkedTypeSkeleton } from "./TypeLinkedType";
 
-                export interface TypeSysIdFields {
-                    linkFieldId?: Entry<TypeLinkedTypeFields>;
-                }
+export interface TypeSysIdFields {
+    linkFieldId?: Entry<TypeLinkedTypeSkeleton>;
+}
 
-                export type TypeSysId = Entry<TypeSysIdFields>;
-                `),
+export interface TypeSysIdSkeleton {
+    fields: TypeSysIdFields;
+    contentTypeId: string;
+}
+
+export type TypeSysId = Entry<TypeSysIdSkeleton>;
+`),
     );
   });
 
@@ -210,16 +235,21 @@ describe('A Contentful definitions builder', () => {
     });
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-                import type { Entry } from "contentful";
-                import type { TypeArtistFields } from "./TypeArtist";
-                import type { TypeArtworkFields } from "./TypeArtwork";
+import type { Entry } from "contentful";
+import type { TypeArtistSkeleton } from "./TypeArtist";
+import type { TypeArtworkSkeleton } from "./TypeArtwork";
 
-                export interface TypeSysIdFields {
-                    arrayFieldId?: Entry<TypeArtistFields | TypeArtworkFields>[];
-                }
+export interface TypeSysIdFields {
+    arrayFieldId?: Entry<TypeArtistSkeleton | TypeArtworkSkeleton>[];
+}
 
-                export type TypeSysId = Entry<TypeSysIdFields>;
-                `),
+export interface TypeSysIdSkeleton {
+    fields: TypeSysIdFields;
+    contentTypeId: string;
+}
+
+export type TypeSysId = Entry<TypeSysIdSkeleton>;
+`),
     );
   });
 
@@ -245,14 +275,19 @@ describe('A Contentful definitions builder', () => {
     });
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-                import type { Entry } from "contentful";
+import type { Entry } from "contentful";
 
-                export interface TypeSysIdFields {
-                    stringFieldId?: "hello" | "world";
-                }
+export interface TypeSysIdFields {
+    stringFieldId?: "hello" | "world";
+}
 
-                export type TypeSysId = Entry<TypeSysIdFields>;
-                `),
+export interface TypeSysIdSkeleton {
+    fields: TypeSysIdFields;
+    contentTypeId: string;
+}
+
+export type TypeSysId = Entry<TypeSysIdSkeleton>;
+`),
     );
   });
 
@@ -278,14 +313,19 @@ describe('A Contentful definitions builder', () => {
     });
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-                import type { Entry } from "contentful";
-                
-                export interface TypeSysIdFields {
-                    numericFieldId?: 1 | 2 | 3;
-                }
+import type { Entry } from "contentful";
 
-                export type TypeSysId = Entry<TypeSysIdFields>;
-                `),
+export interface TypeSysIdFields {
+    numericFieldId?: 1 | 2 | 3;
+}
+
+export interface TypeSysIdSkeleton {
+    fields: TypeSysIdFields;
+    contentTypeId: string;
+}
+
+export type TypeSysId = Entry<TypeSysIdSkeleton>;
+`),
     );
   });
 
@@ -298,13 +338,18 @@ describe('A Contentful definitions builder', () => {
 
     expect('\n' + result.toString()).toEqual(
       stripIndent(`
-                import type { Entry } from "contentful";
-                
-                export interface TypeSysIdFields {
-                }
+import type { Entry } from "contentful";
 
-                export type TypeSysId = Entry<TypeSysIdFields>;
-                `),
+    export interface TypeSysIdFields {
+    }
+
+    export interface TypeSysIdSkeleton {
+      fields: TypeSysIdFields;
+      contentTypeId: string;
+    }
+
+export type TypeSysId = Entry<TypeSysIdSkeleton>;
+`),
     );
   });
 
@@ -326,24 +371,34 @@ describe('A Contentful definitions builder', () => {
 
     expect('\n' + result1.toString()).toEqual(
       stripIndent(`
-                import type { Entry } from "contentful";
-                
-                export interface TypeSysIdFields {
-                }
+import type { Entry } from "contentful";
 
-                export type TypeSysId = Entry<TypeSysIdFields>;
-                `),
+    export interface TypeSysIdFields {
+    }
+
+    export interface TypeSysIdSkeleton {
+      fields: TypeSysIdFields;
+      contentTypeId: string;
+    }
+
+export type TypeSysId = Entry<TypeSysIdSkeleton>;
+`),
     );
 
     expect('\n' + result2.toString()).toEqual(
       stripIndent(`
-                import type { Entry } from "contentful";
-                
-                export interface TypeMyTypeFields {
-                }
+import type { Entry } from "contentful";
 
-                export type TypeMyType = Entry<TypeMyTypeFields>;
-                `),
+    export interface TypeMyTypeFields {
+    }
+
+    export interface TypeMyTypeSkeleton {
+      fields: TypeMyTypeFields;
+      contentTypeId: string;
+    }
+
+export type TypeMyType = Entry<TypeMyTypeSkeleton>;
+`),
     );
   });
 
@@ -381,26 +436,36 @@ describe('A Contentful definitions builder', () => {
 
     expect('\n' + result1.toString()).toEqual(
       stripIndent(`
-                import type { Entry } from "contentful";
-                
-                export interface TypeSysIdFields {
-                }
+import type { Entry } from "contentful";
 
-                export type TypeSysId = Entry<TypeSysIdFields>;
-                `),
+    export interface TypeSysIdFields {
+    }
+
+    export interface TypeSysIdSkeleton {
+      fields: TypeSysIdFields;
+      contentTypeId: string;
+    }
+
+export type TypeSysId = Entry<TypeSysIdSkeleton>;
+`),
     );
 
     expect('\n' + result2.toString()).toEqual(
       stripIndent(`
-                import type { Entry } from "contentful";
-                import type { TypeSysIdFields } from "./TypeSysId";
-                
-                export interface TypeMyTypeFields {
-                    linkFieldId?: Entry<TypeSysIdFields>;
-                }
+import type { Entry } from "contentful";
+import type { TypeSysIdSkeleton } from "./TypeSysId";
 
-                export type TypeMyType = Entry<TypeMyTypeFields>;
-                `),
+    export interface TypeMyTypeFields {
+      linkFieldId?: Entry<TypeSysIdSkeleton>;
+    }
+
+    export interface TypeMyTypeSkeleton {
+      fields: TypeMyTypeFields;
+      contentTypeId: string;
+    }
+
+export type TypeMyType = Entry<TypeMyTypeSkeleton>;
+`),
     );
   });
 
@@ -411,8 +476,8 @@ describe('A Contentful definitions builder', () => {
     const result1 = await fs.readFile(path.resolve(fixturesPath, 'index.ts'));
     expect('\n' + result1.toString()).toEqual(
       stripIndent(`
-            export type { TypeSysId, TypeSysIdFields } from "./TypeSysId";
-            `),
+export type { TypeSysId, TypeSysIdFields, TypeSysIdSkeleton } from "./TypeSysId";
+`),
     );
   });
 
@@ -449,14 +514,19 @@ describe('A Contentful definitions builder', () => {
 
     expect('\n' + result2.toString()).toEqual(
       stripIndent(`
-                import type { Entry } from "contentful";
-                
-                export interface TypeMyTypeFields {
-                    linkFieldId?: Entry<TypeMyTypeFields>;
-                }
+import type { Entry } from "contentful";
 
-                export type TypeMyType = Entry<TypeMyTypeFields>;
-                `),
+    export interface TypeMyTypeFields {
+      linkFieldId?: Entry<TypeMyTypeSkeleton>;
+    }
+
+    export interface TypeMyTypeSkeleton {
+      fields: TypeMyTypeFields;
+      contentTypeId: string;
+    }
+
+export type TypeMyType = Entry<TypeMyTypeSkeleton>;
+`),
     );
   });
 
@@ -515,27 +585,32 @@ describe('A Contentful definitions builder', () => {
 
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-        import type { Entry } from "contentful";
-        
-        export type LocalizedFields<Fields, Locales extends keyof any> = {
-            [FieldName in keyof Fields]?: {
-                [LocaleName in Locales]?: Fields[FieldName];
-            }
-        };
-        export type LocalizedEntry<EntryType, Locales extends keyof any> = {
-            [Key in keyof EntryType]:
-            Key extends 'fields'
-            ? LocalizedFields<EntryType[Key], Locales>
-            : EntryType[Key]
-        };
-        
-        export interface TypeSysIdFields {
-        }
+import type { Entry } from "contentful";
 
-        export type TypeSysId = Entry<TypeSysIdFields>;
-        export type LocalizedTypeSysIdFields<Locales extends keyof any> = LocalizedFields<TypeSysIdFields, Locales>;
-        export type LocalizedTypeSysId<Locales extends keyof any> = LocalizedEntry<TypeSysId, Locales>;
-        `),
+export type LocalizedFields<Fields, Locales extends keyof any> = {
+    [FieldName in keyof Fields]?: {
+      [LocaleName in Locales]?: Fields[FieldName];
+    }
+};
+export type LocalizedEntry<EntryType, Locales extends keyof any> = {
+    [Key in keyof EntryType]:
+    Key extends 'fields'
+    ? LocalizedFields<EntryType[Key], Locales>
+    : EntryType[Key]
+};
+
+    export interface TypeSysIdFields {
+    }
+
+    export interface TypeSysIdSkeleton {
+      fields: TypeSysIdFields;
+      contentTypeId: string;
+    }
+
+export type TypeSysId = Entry<TypeSysIdSkeleton>;
+export type LocalizedTypeSysIdFields<Locales extends keyof any> = LocalizedFields<TypeSysIdFields, Locales>;
+export type LocalizedTypeSysId<Locales extends keyof any> = LocalizedEntry<TypeSysId, Locales>;
+`),
     );
   });
 
@@ -546,19 +621,24 @@ describe('A Contentful definitions builder', () => {
 
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-          import type { Entry } from "contentful";
-          
-          export interface TypeSysIdFields {
-          }
+import type { Entry } from "contentful";
 
-          export type TypeSysId = Entry<TypeSysIdFields>;
+    export interface TypeSysIdFields {
+    }
 
-          export function isTypeSysId(entry: WithContentTypeLink): entry is TypeSysId {
-              return entry?.sys?.contentType?.sys?.id === 'sysId'
-          }
-          
-          export type WithContentTypeLink = { sys: { contentType: { sys: { id: string } } } };
-          `),
+    export interface TypeSysIdSkeleton {
+      fields: TypeSysIdFields;
+      contentTypeId: string;
+    }
+
+export type TypeSysId = Entry<TypeSysIdSkeleton>;
+
+export function isTypeSysId(entry: WithContentTypeLink): entry is TypeSysId {
+    return entry?.sys?.contentType?.sys?.id === 'sysId'
+}
+
+export type WithContentTypeLink = { sys: { contentType: { sys: { id: string } } } };
+`),
     );
   });
 
@@ -570,10 +650,10 @@ describe('A Contentful definitions builder', () => {
     const result1 = await fs.readFile(path.resolve(fixturesPath, 'index.ts'));
     expect('\n' + result1.toString()).toEqual(
       stripIndent(`
-            export { isTypeSysId } from "./TypeSysId";
-            export type { TypeSysId, TypeSysIdFields } from "./TypeSysId";
-            export type { WithContentTypeLink } from "./WithContentTypeLink";
-            `),
+export { isTypeSysId } from "./TypeSysId";
+export type { TypeSysId, TypeSysIdFields, TypeSysIdSkeleton } from "./TypeSysId";
+export type { WithContentTypeLink } from "./WithContentTypeLink";
+`),
     );
   });
 });
