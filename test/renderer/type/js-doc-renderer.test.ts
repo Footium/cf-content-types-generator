@@ -60,7 +60,7 @@ describe('A JSDoc content type renderer class', () => {
 
       expect('\n' + testFile.getFullText()).toEqual(
         stripIndent(`
-        import type { Entry, EntryFields } from "contentful";
+        import type { EntryFields, EntrySkeletonType } from "contentful";
         
         /**
          * Fields type definition for content type 'TypeAnimal'
@@ -82,7 +82,7 @@ describe('A JSDoc content type renderer class', () => {
          * @name TypeAnimal
          * @type {TypeAnimal}
          */
-        export type TypeAnimal = Entry<TypeAnimalFields>;
+        export type TypeAnimal = EntrySkeletonType<TypeAnimalFields>;
         `),
       );
     });
@@ -148,7 +148,7 @@ describe('A JSDoc content type renderer class', () => {
 
       expect('\n' + testFile.getFullText()).toEqual(
         stripIndent(`
-        import type { Entry, EntryFields } from "contentful";
+        import type { EntryFields, EntrySkeletonType } from "contentful";
         
         /**
          * Fields type definition for content type 'TypeAnimal'
@@ -171,7 +171,7 @@ describe('A JSDoc content type renderer class', () => {
          * @type {TypeAnimal}
          * @author <user-id>
          */
-        export type TypeAnimal = Entry<TypeAnimalFields>;
+        export type TypeAnimal = EntrySkeletonType<TypeAnimalFields>;
         `),
       );
     });
@@ -190,7 +190,7 @@ describe('A JSDoc content type renderer class', () => {
 
       expect('\n' + testFile.getFullText()).toEqual(
         stripIndent(`
-        import type { Entry, EntryFields } from "contentful";
+        import type { EntryFields, EntrySkeletonType } from "contentful";
         
         /**
          * Fields type definition for content type 'TypeAnimal'
@@ -213,7 +213,7 @@ describe('A JSDoc content type renderer class', () => {
          * @type {TypeAnimal}
          * @version 5
          */
-        export type TypeAnimal = Entry<TypeAnimalFields>;
+        export type TypeAnimal = EntrySkeletonType<TypeAnimalFields>;
         `),
       );
     });
@@ -232,7 +232,7 @@ describe('A JSDoc content type renderer class', () => {
 
       expect('\n' + testFile.getFullText()).toEqual(
         stripIndent(`
-        import type { Entry, EntryFields } from "contentful";
+        import type { EntryFields, EntrySkeletonType } from "contentful";
         
         /**
          * Fields type definition for content type 'TypeAnimal'
@@ -255,7 +255,7 @@ describe('A JSDoc content type renderer class', () => {
          * @type {TypeAnimal}
          * @since 1675420727
          */
-        export type TypeAnimal = Entry<TypeAnimalFields>;
+        export type TypeAnimal = EntrySkeletonType<TypeAnimalFields>;
         `),
       );
     });
@@ -276,7 +276,7 @@ describe('A JSDoc content type renderer class', () => {
 
       expect('\n' + testFile.getFullText()).toEqual(
         stripIndent(`
-        import type { Entry, EntryFields } from "contentful";
+        import type { EntryFields, EntrySkeletonType } from "contentful";
         
         /**
          * Fields type definition for content type 'TypeAnimal'
@@ -299,7 +299,7 @@ describe('A JSDoc content type renderer class', () => {
          * @name TypeAnimal
          * @type {TypeAnimal}
          */
-        export type TypeAnimal = Entry<TypeAnimalFields>;
+        export type TypeAnimal = EntrySkeletonType<TypeAnimalFields>;
         `),
       );
     });
@@ -326,7 +326,7 @@ describe('A JSDoc content type renderer class', () => {
 
       expect('\n' + testFile.getFullText()).toEqual(
         stripIndent(`
-        import type { Entry, EntryFields } from "contentful";
+        import type { EntryFields, EntrySkeletonType } from "contentful";
         
         /**
          * Fields type definition for content type 'TypeAnimal'
@@ -344,7 +344,7 @@ describe('A JSDoc content type renderer class', () => {
         }
         
         /** Custom entry description */
-        export type TypeAnimal = Entry<TypeAnimalFields>;
+        export type TypeAnimal = EntrySkeletonType<TypeAnimalFields>;
         `),
       );
     });

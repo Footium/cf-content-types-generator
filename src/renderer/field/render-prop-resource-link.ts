@@ -11,11 +11,11 @@ export const renderPropResourceLink = (field: ContentTypeField, context: RenderC
 
   context.imports.add({
     moduleSpecifier: 'contentful',
-    namedImports: ['Entry'],
+    namedImports: ['EntrySkeletonType'],
     isTypeOnly: true,
   });
 
-  return renderTypeGeneric('Entry', 'Record<string, any>');
+  return renderTypeGeneric('EntrySkeletonType', 'Record<string, any>');
 };
 
 const EntryResourceType = renderTypeGeneric('EntryFieldTypes.EntryResourceLink', 'EntrySkeletonType');
