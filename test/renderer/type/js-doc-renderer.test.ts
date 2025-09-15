@@ -60,35 +60,30 @@ describe('A JSDoc content type renderer class', () => {
 
       expect('\n' + testFile.getFullText()).toEqual(
         stripIndent(`
-import type { Entry, EntryFields } from "contentful";
-
-/**
- * Fields type definition for content type 'TypeAnimal'
- * @name TypeAnimalFields
- * @type {TypeAnimalFields}
- * @memberof TypeAnimal
- */
-export interface TypeAnimalFields {
-    /**
-     * Field type definition for field 'bread' (Bread)
-     * @name Bread
-     * @localized false
-     */
-    bread: EntryFields.Symbol;
-}
-
-export interface TypeAnimalSkeleton {
-    fields: TypeAnimalFields;
-    contentTypeId: string;
-}
-
-/**
- * Entry type definition for content type 'animal' (Animal)
- * @name TypeAnimal
- * @type {TypeAnimal}
- */
-export type TypeAnimal = Entry<TypeAnimalSkeleton>;
-`),
+        import type { EntryFields, EntrySkeletonType } from "contentful";
+        
+        /**
+         * Fields type definition for content type 'TypeAnimal'
+         * @name TypeAnimalFields
+         * @type {TypeAnimalFields}
+         * @memberof TypeAnimal
+         */
+        export interface TypeAnimalFields {
+            /**
+             * Field type definition for field 'bread' (Bread)
+             * @name Bread
+             * @localized false
+             */
+            bread: EntryFields.Symbol;
+        }
+        
+        /**
+         * Entry type definition for content type 'animal' (Animal)
+         * @name TypeAnimal
+         * @type {TypeAnimal}
+         */
+        export type TypeAnimal = EntrySkeletonType<TypeAnimalFields>;
+        `),
       );
     });
 
@@ -102,36 +97,36 @@ export type TypeAnimal = Entry<TypeAnimalSkeleton>;
 
       expect('\n' + testFile.getFullText()).toEqual(
         stripIndent(`
-import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
-
-/**
- * Fields type definition for content type 'TypeAnimal'
- * @name TypeAnimalFields
- * @type {TypeAnimalFields}
- * @memberof TypeAnimal
- */
-export interface TypeAnimalFields {
-    /**
-     * Field type definition for field 'bread' (Bread)
-     * @name Bread
-     * @localized false
-     */
-    bread: EntryFieldTypes.Symbol;
-}
-
-/**
- * Entry skeleton type definition for content type 'animal' (Animal)
- * @name TypeAnimalSkeleton
- * @type {TypeAnimalSkeleton}
- */
-export type TypeAnimalSkeleton = EntrySkeletonType<TypeAnimalFields, "animal">;
-/**
- * Entry type definition for content type 'animal' (Animal)
- * @name TypeAnimal
- * @type {TypeAnimal}
- */
-export type TypeAnimal<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeAnimalSkeleton, Modifiers, Locales>;
-`),
+        import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
+        
+        /**
+         * Fields type definition for content type 'TypeAnimal'
+         * @name TypeAnimalFields
+         * @type {TypeAnimalFields}
+         * @memberof TypeAnimal
+         */
+        export interface TypeAnimalFields {
+            /**
+             * Field type definition for field 'bread' (Bread)
+             * @name Bread
+             * @localized false
+             */
+            bread: EntryFieldTypes.Symbol;
+        }
+        
+        /**
+         * Entry skeleton type definition for content type 'animal' (Animal)
+         * @name TypeAnimalSkeleton
+         * @type {TypeAnimalSkeleton}
+         */
+        export type TypeAnimalSkeleton = EntrySkeletonType<TypeAnimalFields, "animal">;
+        /**
+         * Entry type definition for content type 'animal' (Animal)
+         * @name TypeAnimal
+         * @type {TypeAnimal}
+         */
+        export type TypeAnimal<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeAnimalSkeleton, Modifiers, Locales>;
+        `),
       );
     });
 
@@ -153,36 +148,31 @@ export type TypeAnimal<Modifiers extends ChainModifiers, Locales extends LocaleC
 
       expect('\n' + testFile.getFullText()).toEqual(
         stripIndent(`
-import type { Entry, EntryFields } from "contentful";
-
-/**
- * Fields type definition for content type 'TypeAnimal'
- * @name TypeAnimalFields
- * @type {TypeAnimalFields}
- * @memberof TypeAnimal
- */
-export interface TypeAnimalFields {
-    /**
-     * Field type definition for field 'bread' (Bread)
-     * @name Bread
-     * @localized false
-     */
-    bread: EntryFields.Symbol;
-}
-
-export interface TypeAnimalSkeleton {
-    fields: TypeAnimalFields;
-    contentTypeId: string;
-}
-
-/**
- * Entry type definition for content type 'animal' (Animal)
- * @name TypeAnimal
- * @type {TypeAnimal}
- * @author <user-id>
- */
-export type TypeAnimal = Entry<TypeAnimalSkeleton>;
-`),
+        import type { EntryFields, EntrySkeletonType } from "contentful";
+        
+        /**
+         * Fields type definition for content type 'TypeAnimal'
+         * @name TypeAnimalFields
+         * @type {TypeAnimalFields}
+         * @memberof TypeAnimal
+         */
+        export interface TypeAnimalFields {
+            /**
+             * Field type definition for field 'bread' (Bread)
+             * @name Bread
+             * @localized false
+             */
+            bread: EntryFields.Symbol;
+        }
+        
+        /**
+         * Entry type definition for content type 'animal' (Animal)
+         * @name TypeAnimal
+         * @type {TypeAnimal}
+         * @author <user-id>
+         */
+        export type TypeAnimal = EntrySkeletonType<TypeAnimalFields>;
+        `),
       );
     });
 
@@ -200,36 +190,31 @@ export type TypeAnimal = Entry<TypeAnimalSkeleton>;
 
       expect('\n' + testFile.getFullText()).toEqual(
         stripIndent(`
-import type { Entry, EntryFields } from "contentful";
-
-/**
- * Fields type definition for content type 'TypeAnimal'
- * @name TypeAnimalFields
- * @type {TypeAnimalFields}
- * @memberof TypeAnimal
- */
-export interface TypeAnimalFields {
-    /**
-     * Field type definition for field 'bread' (Bread)
-     * @name Bread
-     * @localized false
-     */
-    bread: EntryFields.Symbol;
-}
-
-export interface TypeAnimalSkeleton {
-    fields: TypeAnimalFields;
-    contentTypeId: string;
-}
-
-/**
- * Entry type definition for content type 'animal' (Animal)
- * @name TypeAnimal
- * @type {TypeAnimal}
- * @version 5
- */
-export type TypeAnimal = Entry<TypeAnimalSkeleton>;
-`),
+        import type { EntryFields, EntrySkeletonType } from "contentful";
+        
+        /**
+         * Fields type definition for content type 'TypeAnimal'
+         * @name TypeAnimalFields
+         * @type {TypeAnimalFields}
+         * @memberof TypeAnimal
+         */
+        export interface TypeAnimalFields {
+            /**
+             * Field type definition for field 'bread' (Bread)
+             * @name Bread
+             * @localized false
+             */
+            bread: EntryFields.Symbol;
+        }
+        
+        /**
+         * Entry type definition for content type 'animal' (Animal)
+         * @name TypeAnimal
+         * @type {TypeAnimal}
+         * @version 5
+         */
+        export type TypeAnimal = EntrySkeletonType<TypeAnimalFields>;
+        `),
       );
     });
 
@@ -247,36 +232,31 @@ export type TypeAnimal = Entry<TypeAnimalSkeleton>;
 
       expect('\n' + testFile.getFullText()).toEqual(
         stripIndent(`
-import type { Entry, EntryFields } from "contentful";
-
-/**
- * Fields type definition for content type 'TypeAnimal'
- * @name TypeAnimalFields
- * @type {TypeAnimalFields}
- * @memberof TypeAnimal
- */
-export interface TypeAnimalFields {
-    /**
-     * Field type definition for field 'bread' (Bread)
-     * @name Bread
-     * @localized false
-     */
-    bread: EntryFields.Symbol;
-}
-
-export interface TypeAnimalSkeleton {
-    fields: TypeAnimalFields;
-    contentTypeId: string;
-}
-
-/**
- * Entry type definition for content type 'animal' (Animal)
- * @name TypeAnimal
- * @type {TypeAnimal}
- * @since 1675420727
- */
-export type TypeAnimal = Entry<TypeAnimalSkeleton>;
-`),
+        import type { EntryFields, EntrySkeletonType } from "contentful";
+        
+        /**
+         * Fields type definition for content type 'TypeAnimal'
+         * @name TypeAnimalFields
+         * @type {TypeAnimalFields}
+         * @memberof TypeAnimal
+         */
+        export interface TypeAnimalFields {
+            /**
+             * Field type definition for field 'bread' (Bread)
+             * @name Bread
+             * @localized false
+             */
+            bread: EntryFields.Symbol;
+        }
+        
+        /**
+         * Entry type definition for content type 'animal' (Animal)
+         * @name TypeAnimal
+         * @type {TypeAnimal}
+         * @since 1675420727
+         */
+        export type TypeAnimal = EntrySkeletonType<TypeAnimalFields>;
+        `),
       );
     });
 
@@ -296,36 +276,31 @@ export type TypeAnimal = Entry<TypeAnimalSkeleton>;
 
       expect('\n' + testFile.getFullText()).toEqual(
         stripIndent(`
-import type { Entry, EntryFields } from "contentful";
-
-/**
- * Fields type definition for content type 'TypeAnimal'
- * @name TypeAnimalFields
- * @type {TypeAnimalFields}
- * @memberof TypeAnimal
- */
-export interface TypeAnimalFields {
-    /**
-     * Field type definition for field 'bread' (Bread)
-     * @name Bread
-     * @localized false
-     * @summary Help text for the bread field.
-     */
-    bread: EntryFields.Symbol;
-}
-
-export interface TypeAnimalSkeleton {
-    fields: TypeAnimalFields;
-    contentTypeId: string;
-}
-
-/**
- * Entry type definition for content type 'animal' (Animal)
- * @name TypeAnimal
- * @type {TypeAnimal}
- */
-export type TypeAnimal = Entry<TypeAnimalSkeleton>;
-`),
+        import type { EntryFields, EntrySkeletonType } from "contentful";
+        
+        /**
+         * Fields type definition for content type 'TypeAnimal'
+         * @name TypeAnimalFields
+         * @type {TypeAnimalFields}
+         * @memberof TypeAnimal
+         */
+        export interface TypeAnimalFields {
+            /**
+             * Field type definition for field 'bread' (Bread)
+             * @name Bread
+             * @localized false
+             * @summary Help text for the bread field.
+             */
+            bread: EntryFields.Symbol;
+        }
+        
+        /**
+         * Entry type definition for content type 'animal' (Animal)
+         * @name TypeAnimal
+         * @type {TypeAnimal}
+         */
+        export type TypeAnimal = EntrySkeletonType<TypeAnimalFields>;
+        `),
       );
     });
   });
@@ -351,31 +326,26 @@ export type TypeAnimal = Entry<TypeAnimalSkeleton>;
 
       expect('\n' + testFile.getFullText()).toEqual(
         stripIndent(`
-import type { Entry, EntryFields } from "contentful";
-
-/**
- * Fields type definition for content type 'TypeAnimal'
- * @name TypeAnimalFields
- * @type {TypeAnimalFields}
- * @memberof TypeAnimal
- */
-export interface TypeAnimalFields {
-    /**
-     * Field type definition for field 'bread' (Bread)
-     * @name Bread
-     * @localized false
-     */
-    bread: EntryFields.Symbol;
-}
-
-export interface TypeAnimalSkeleton {
-    fields: TypeAnimalFields;
-    contentTypeId: string;
-}
-
-/** Custom entry description */
-export type TypeAnimal = Entry<TypeAnimalSkeleton>;
-`),
+        import type { EntryFields, EntrySkeletonType } from "contentful";
+        
+        /**
+         * Fields type definition for content type 'TypeAnimal'
+         * @name TypeAnimalFields
+         * @type {TypeAnimalFields}
+         * @memberof TypeAnimal
+         */
+        export interface TypeAnimalFields {
+            /**
+             * Field type definition for field 'bread' (Bread)
+             * @name Bread
+             * @localized false
+             */
+            bread: EntryFields.Symbol;
+        }
+        
+        /** Custom entry description */
+        export type TypeAnimal = EntrySkeletonType<TypeAnimalFields>;
+        `),
       );
     });
   });

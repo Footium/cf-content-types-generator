@@ -27,7 +27,7 @@ describe('A renderPropLink function', () => {
         }
         `);
 
-    expect(renderPropLink(field, createDefaultContext())).toEqual('Entry<TypeTopicCategoryFields>');
+    expect(renderPropLink(field, createDefaultContext())).toEqual('EntrySkeletonType<TypeTopicCategoryFields>');
   });
 
   it('can evaluate a "Link" type with no validations', () => {
@@ -45,7 +45,7 @@ describe('A renderPropLink function', () => {
       }
       `);
 
-    expect(renderPropLink(field, createDefaultContext())).toEqual('Entry<Record<string, any>>');
+    expect(renderPropLink(field, createDefaultContext())).toEqual('EntrySkeletonType<Record<string, any>>');
   });
 });
 

@@ -51,17 +51,12 @@ describe('A Contentful definitions builder', () => {
     builder.appendType(modelType);
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-import type { Entry } from "contentful";
+        import type { EntrySkeletonType } from "contentful";
 
-export interface TypeSysIdFields {
-}
+        export interface TypeSysIdFields {
+        }
 
-export interface TypeSysIdSkeleton {
-    fields: TypeSysIdFields;
-    contentTypeId: string;
-}
-
-export type TypeSysId = Entry<TypeSysIdSkeleton>;
+        export type TypeSysId = EntrySkeletonType<TypeSysIdFields>;
 `),
     );
   });
@@ -84,18 +79,13 @@ export type TypeSysId = Entry<TypeSysIdSkeleton>;
     });
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-import type { Entry, EntryFields } from "contentful";
+        import type { EntryFields, EntrySkeletonType } from "contentful";
 
-export interface TypeSysIdFields {
-    symbolFieldId: EntryFields.Symbol;
-}
+        export interface TypeSysIdFields {
+            symbolFieldId: EntryFields.Symbol;
+        }
 
-export interface TypeSysIdSkeleton {
-    fields: TypeSysIdFields;
-    contentTypeId: string;
-}
-
-export type TypeSysId = Entry<TypeSysIdSkeleton>;
+        export type TypeSysId = EntrySkeletonType<TypeSysIdFields>;
 `),
     );
   });
@@ -118,18 +108,13 @@ export type TypeSysId = Entry<TypeSysIdSkeleton>;
     });
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-import type { Entry, EntryFields } from "contentful";
+        import type { EntryFields, EntrySkeletonType } from "contentful";
 
-export interface TypeSysIdFields {
-    symbolFieldId?: EntryFields.Symbol;
-}
+        export interface TypeSysIdFields {
+            symbolFieldId?: EntryFields.Symbol;
+        }
 
-export interface TypeSysIdSkeleton {
-    fields: TypeSysIdFields;
-    contentTypeId: string;
-}
-
-export type TypeSysId = Entry<TypeSysIdSkeleton>;
+        export type TypeSysId = EntrySkeletonType<TypeSysIdFields>;
 `),
     );
   });
@@ -152,18 +137,13 @@ export type TypeSysId = Entry<TypeSysIdSkeleton>;
     });
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-import type { Entry, EntryFields } from "contentful";
+        import type { EntryFields, EntrySkeletonType } from "contentful";
 
-export interface TypeSysIdFields {
-    boolFieldId?: EntryFields.Boolean;
-}
+        export interface TypeSysIdFields {
+            boolFieldId?: EntryFields.Boolean;
+        }
 
-export interface TypeSysIdSkeleton {
-    fields: TypeSysIdFields;
-    contentTypeId: string;
-}
-
-export type TypeSysId = Entry<TypeSysIdSkeleton>;
+        export type TypeSysId = EntrySkeletonType<TypeSysIdFields>;
 `),
     );
   });
@@ -191,19 +171,14 @@ export type TypeSysId = Entry<TypeSysIdSkeleton>;
     });
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-import type { Entry } from "contentful";
-import type { TypeLinkedTypeSkeleton } from "./TypeLinkedType";
+        import type { EntrySkeletonType } from "contentful";
+        import type { TypeLinkedTypeFields } from "./TypeLinkedType";
 
-export interface TypeSysIdFields {
-    linkFieldId?: Entry<TypeLinkedTypeSkeleton>;
-}
+        export interface TypeSysIdFields {
+            linkFieldId?: EntrySkeletonType<TypeLinkedTypeFields>;
+        }
 
-export interface TypeSysIdSkeleton {
-    fields: TypeSysIdFields;
-    contentTypeId: string;
-}
-
-export type TypeSysId = Entry<TypeSysIdSkeleton>;
+        export type TypeSysId = EntrySkeletonType<TypeSysIdFields>;
 `),
     );
   });
@@ -235,20 +210,15 @@ export type TypeSysId = Entry<TypeSysIdSkeleton>;
     });
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-import type { Entry } from "contentful";
-import type { TypeArtistSkeleton } from "./TypeArtist";
-import type { TypeArtworkSkeleton } from "./TypeArtwork";
+        import type { EntrySkeletonType } from "contentful";
+        import type { TypeArtistFields } from "./TypeArtist";
+        import type { TypeArtworkFields } from "./TypeArtwork";
 
-export interface TypeSysIdFields {
-    arrayFieldId?: Entry<TypeArtistSkeleton | TypeArtworkSkeleton>[];
-}
+        export interface TypeSysIdFields {
+            arrayFieldId?: EntrySkeletonType<TypeArtistFields | TypeArtworkFields>[];
+        }
 
-export interface TypeSysIdSkeleton {
-    fields: TypeSysIdFields;
-    contentTypeId: string;
-}
-
-export type TypeSysId = Entry<TypeSysIdSkeleton>;
+        export type TypeSysId = EntrySkeletonType<TypeSysIdFields>;
 `),
     );
   });
@@ -275,18 +245,13 @@ export type TypeSysId = Entry<TypeSysIdSkeleton>;
     });
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-import type { Entry } from "contentful";
+        import type { EntrySkeletonType } from "contentful";
 
-export interface TypeSysIdFields {
-    stringFieldId?: "hello" | "world";
-}
+        export interface TypeSysIdFields {
+            stringFieldId?: "hello" | "world";
+        }
 
-export interface TypeSysIdSkeleton {
-    fields: TypeSysIdFields;
-    contentTypeId: string;
-}
-
-export type TypeSysId = Entry<TypeSysIdSkeleton>;
+        export type TypeSysId = EntrySkeletonType<TypeSysIdFields>;
 `),
     );
   });
@@ -313,18 +278,13 @@ export type TypeSysId = Entry<TypeSysIdSkeleton>;
     });
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-import type { Entry } from "contentful";
+        import type { EntrySkeletonType } from "contentful";
 
-export interface TypeSysIdFields {
-    numericFieldId?: 1 | 2 | 3;
-}
+        export interface TypeSysIdFields {
+            numericFieldId?: 1 | 2 | 3;
+        }
 
-export interface TypeSysIdSkeleton {
-    fields: TypeSysIdFields;
-    contentTypeId: string;
-}
-
-export type TypeSysId = Entry<TypeSysIdSkeleton>;
+        export type TypeSysId = EntrySkeletonType<TypeSysIdFields>;
 `),
     );
   });
@@ -338,17 +298,12 @@ export type TypeSysId = Entry<TypeSysIdSkeleton>;
 
     expect('\n' + result.toString()).toEqual(
       stripIndent(`
-import type { Entry } from "contentful";
+        import type { EntrySkeletonType } from "contentful";
 
-    export interface TypeSysIdFields {
-    }
+        export interface TypeSysIdFields {
+        }
 
-    export interface TypeSysIdSkeleton {
-      fields: TypeSysIdFields;
-      contentTypeId: string;
-    }
-
-export type TypeSysId = Entry<TypeSysIdSkeleton>;
+        export type TypeSysId = EntrySkeletonType<TypeSysIdFields>;
 `),
     );
   });
@@ -371,33 +326,23 @@ export type TypeSysId = Entry<TypeSysIdSkeleton>;
 
     expect('\n' + result1.toString()).toEqual(
       stripIndent(`
-import type { Entry } from "contentful";
+        import type { EntrySkeletonType } from "contentful";
 
-    export interface TypeSysIdFields {
-    }
+        export interface TypeSysIdFields {
+        }
 
-    export interface TypeSysIdSkeleton {
-      fields: TypeSysIdFields;
-      contentTypeId: string;
-    }
-
-export type TypeSysId = Entry<TypeSysIdSkeleton>;
+        export type TypeSysId = EntrySkeletonType<TypeSysIdFields>;
 `),
     );
 
     expect('\n' + result2.toString()).toEqual(
       stripIndent(`
-import type { Entry } from "contentful";
+        import type { EntrySkeletonType } from "contentful";
 
-    export interface TypeMyTypeFields {
-    }
+        export interface TypeMyTypeFields {
+        }
 
-    export interface TypeMyTypeSkeleton {
-      fields: TypeMyTypeFields;
-      contentTypeId: string;
-    }
-
-export type TypeMyType = Entry<TypeMyTypeSkeleton>;
+        export type TypeMyType = EntrySkeletonType<TypeMyTypeFields>;
 `),
     );
   });
@@ -436,35 +381,25 @@ export type TypeMyType = Entry<TypeMyTypeSkeleton>;
 
     expect('\n' + result1.toString()).toEqual(
       stripIndent(`
-import type { Entry } from "contentful";
+        import type { EntrySkeletonType } from "contentful";
 
-    export interface TypeSysIdFields {
-    }
+        export interface TypeSysIdFields {
+        }
 
-    export interface TypeSysIdSkeleton {
-      fields: TypeSysIdFields;
-      contentTypeId: string;
-    }
-
-export type TypeSysId = Entry<TypeSysIdSkeleton>;
+        export type TypeSysId = EntrySkeletonType<TypeSysIdFields>;
 `),
     );
 
     expect('\n' + result2.toString()).toEqual(
       stripIndent(`
-import type { Entry } from "contentful";
-import type { TypeSysIdSkeleton } from "./TypeSysId";
+        import type { EntrySkeletonType } from "contentful";
+        import type { TypeSysIdFields } from "./TypeSysId";
 
-    export interface TypeMyTypeFields {
-      linkFieldId?: Entry<TypeSysIdSkeleton>;
-    }
+        export interface TypeMyTypeFields {
+            linkFieldId?: EntrySkeletonType<TypeSysIdFields>;
+        }
 
-    export interface TypeMyTypeSkeleton {
-      fields: TypeMyTypeFields;
-      contentTypeId: string;
-    }
-
-export type TypeMyType = Entry<TypeMyTypeSkeleton>;
+        export type TypeMyType = EntrySkeletonType<TypeMyTypeFields>;
 `),
     );
   });
@@ -476,7 +411,7 @@ export type TypeMyType = Entry<TypeMyTypeSkeleton>;
     const result1 = await fs.readFile(path.resolve(fixturesPath, 'index.ts'));
     expect('\n' + result1.toString()).toEqual(
       stripIndent(`
-export type { TypeSysId, TypeSysIdFields, TypeSysIdSkeleton } from "./TypeSysId";
+export type { TypeSysId, TypeSysIdFields } from "./TypeSysId";
 `),
     );
   });
@@ -514,18 +449,13 @@ export type { TypeSysId, TypeSysIdFields, TypeSysIdSkeleton } from "./TypeSysId"
 
     expect('\n' + result2.toString()).toEqual(
       stripIndent(`
-import type { Entry } from "contentful";
+        import type { EntrySkeletonType } from "contentful";
 
-    export interface TypeMyTypeFields {
-      linkFieldId?: Entry<TypeMyTypeSkeleton>;
-    }
+        export interface TypeMyTypeFields {
+            linkFieldId?: EntrySkeletonType<TypeMyTypeFields>;
+        }
 
-    export interface TypeMyTypeSkeleton {
-      fields: TypeMyTypeFields;
-      contentTypeId: string;
-    }
-
-export type TypeMyType = Entry<TypeMyTypeSkeleton>;
+        export type TypeMyType = EntrySkeletonType<TypeMyTypeFields>;
 `),
     );
   });
@@ -585,31 +515,26 @@ export type TypeMyType = Entry<TypeMyTypeSkeleton>;
 
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-import type { Entry } from "contentful";
+        import type { EntrySkeletonType } from "contentful";
 
-export type LocalizedFields<Fields, Locales extends keyof any> = {
-    [FieldName in keyof Fields]?: {
-      [LocaleName in Locales]?: Fields[FieldName];
-    }
-};
-export type LocalizedEntry<EntryType, Locales extends keyof any> = {
-    [Key in keyof EntryType]:
-    Key extends 'fields'
-    ? LocalizedFields<EntryType[Key], Locales>
-    : EntryType[Key]
-};
+        export type LocalizedFields<Fields, Locales extends keyof any> = {
+            [FieldName in keyof Fields]?: {
+                [LocaleName in Locales]?: Fields[FieldName];
+            }
+        };
+        export type LocalizedEntry<EntryType, Locales extends keyof any> = {
+            [Key in keyof EntryType]:
+            Key extends 'fields'
+            ? LocalizedFields<EntryType[Key], Locales>
+            : EntryType[Key]
+        };
 
-    export interface TypeSysIdFields {
-    }
+        export interface TypeSysIdFields {
+        }
 
-    export interface TypeSysIdSkeleton {
-      fields: TypeSysIdFields;
-      contentTypeId: string;
-    }
-
-export type TypeSysId = Entry<TypeSysIdSkeleton>;
-export type LocalizedTypeSysIdFields<Locales extends keyof any> = LocalizedFields<TypeSysIdFields, Locales>;
-export type LocalizedTypeSysId<Locales extends keyof any> = LocalizedEntry<TypeSysId, Locales>;
+        export type TypeSysId = EntrySkeletonType<TypeSysIdFields>;
+        export type LocalizedTypeSysIdFields<Locales extends keyof any> = LocalizedFields<TypeSysIdFields, Locales>;
+        export type LocalizedTypeSysId<Locales extends keyof any> = LocalizedEntry<TypeSysId, Locales>;
 `),
     );
   });
@@ -621,23 +546,18 @@ export type LocalizedTypeSysId<Locales extends keyof any> = LocalizedEntry<TypeS
 
     expect('\n' + builder.toString()).toEqual(
       stripIndent(`
-import type { Entry } from "contentful";
+        import type { EntrySkeletonType } from "contentful";
 
-    export interface TypeSysIdFields {
-    }
+        export interface TypeSysIdFields {
+        }
 
-    export interface TypeSysIdSkeleton {
-      fields: TypeSysIdFields;
-      contentTypeId: string;
-    }
+        export type TypeSysId = EntrySkeletonType<TypeSysIdFields>;
 
-export type TypeSysId = Entry<TypeSysIdSkeleton>;
+        export function isTypeSysId(entry: WithContentTypeLink): entry is TypeSysId {
+            return entry?.sys?.contentType?.sys?.id === 'sysId'
+        }
 
-export function isTypeSysId(entry: WithContentTypeLink): entry is TypeSysId {
-    return entry?.sys?.contentType?.sys?.id === 'sysId'
-}
-
-export type WithContentTypeLink = { sys: { contentType: { sys: { id: string } } } };
+        export type WithContentTypeLink = { sys: { contentType: { sys: { id: string } } } };
 `),
     );
   });
@@ -650,9 +570,9 @@ export type WithContentTypeLink = { sys: { contentType: { sys: { id: string } } 
     const result1 = await fs.readFile(path.resolve(fixturesPath, 'index.ts'));
     expect('\n' + result1.toString()).toEqual(
       stripIndent(`
-export { isTypeSysId } from "./TypeSysId";
-export type { TypeSysId, TypeSysIdFields, TypeSysIdSkeleton } from "./TypeSysId";
-export type { WithContentTypeLink } from "./WithContentTypeLink";
+        export { isTypeSysId } from "./TypeSysId";
+        export type { TypeSysId, TypeSysIdFields } from "./TypeSysId";
+        export type { WithContentTypeLink } from "./WithContentTypeLink";
 `),
     );
   });
